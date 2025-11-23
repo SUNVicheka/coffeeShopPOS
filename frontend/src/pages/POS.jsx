@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Card, Button, Badge, Modal, Form, Alert } from 'react-bootstrap';
 import { productsAPI, categoriesAPI, ordersAPI } from '../services/api';
 import { toast } from 'react-toastify';
-import { FiShoppingCart, FiPlus, FiMinus, FiTrash2, FiCheck } from 'react-icons/fi';
+import { FiShoppingCart, FiPlus, FiMinus, FiTrash2, FiCheck, FiPackage } from 'react-icons/fi';
+import './POS.css';
 
 const POS = () => {
   const [products, setProducts] = useState([]);
@@ -178,17 +179,35 @@ const POS = () => {
                 {filteredProducts.map((product) => (
                   <Col key={product.id} md={4} className="mb-3">
                     <Card
-                      className="h-100"
-                      style={{ cursor: product.stock_qty > 0 ? 'pointer' : 'not-allowed' }}
+                      className="product-card h-100"
+                      style={{ cursor: product.stock_qty > 0 ? 'pointer' : 'not-allowed', opacity: product.stock_qty > 0 ? 1 : 0.6 }}
                       onClick={() => product.stock_qty > 0 && addToCart(product)}
                     >
+                      {/* Product Image */}
+                      <div className="product-image-wrapper">
+                        {product.image_url ? (
+                          <Card.Img
+                            variant="top"
+                            src={product.image_url}
+                            alt={product.name}
+                            className="product-image"
+                            onError={(e) => {
+                              e.target.style.display = 'none';
+                            }}
+                          />
+                        ) : (
+                          <div className="product-image-placeholder">
+                            <FiPackage size={48} />
+                          </div>
+                        )}
+                      </div>
                       <Card.Body>
-                        <Card.Title>{product.name}</Card.Title>
-                        <Card.Text className="text-muted">{product.description}</Card.Text>
-                        <div className="d-flex justify-content-between align-items-center">
-                          <strong>${product.price.toFixed(2)}</strong>
+                        <Card.Title className="product-name">{product.name}</Card.Title>
+                        <Card.Text className="text-muted product-description">{product.description}</Card.Text>
+                        <div className="d-flex justify-content-between align-items-center mt-3">
+                          <strong className="product-price">${product.price.toFixed(2)}</strong>
                           <Badge bg={product.stock_qty > 0 ? 'success' : 'danger'}>
-                            Stock: {product.stock_qty}
+                            {product.stock_qty > 0 ? `${product.stock_qty}` : 'OOS'}
                           </Badge>
                         </div>
                       </Card.Body>

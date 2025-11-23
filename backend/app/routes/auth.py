@@ -31,35 +31,53 @@ def admin_required(f):
     return decorated_function
 
 
-@auth_bp.route('/login', methods=['POST'])
+@auth_bp.route('/login', methods=['POST', 'OPTIONS'])
 def login():
     """Login user"""
-    data = request.get_json()
+    # Handle CORS preflight
+    if request.method == 'OPTIONS':
+        return '', 204
     
-    if not data or not data.get('username') or not data.get('password'):
-        return jsonify({'error': 'Username and password required'}), 400
+    try:
+        data = request.get_json()
+        
+        if not data or not data.get('username') or not data.get('password'):
+            return jsonify({'error': 'Username and password required'}), 400
+        
+        username = data['username'].strip()
+        password = data['password']
+        
+        # Query user from database
+        user = User.query.filter_by(username=username).first()
+        
+        if not user:
+            print(f"[AUTH] User not found: {username}")
+            return jsonify({'error': 'Invalid username or password'}), 401
+        
+        # Check password
+        if not user.check_password(password):
+            print(f"[AUTH] Invalid password for user: {username}")
+            return jsonify({'error': 'Invalid username or password'}), 401
+        
+        if not user.is_active:
+            print(f"[AUTH] User inactive: {username}")
+            return jsonify({'error': 'User account is inactive'}), 401
+        
+        # Create session
+        session['user_id'] = user.id
+        session['username'] = user.username
+        session['role'] = user.role.value if isinstance(user.role, RoleEnum) else str(user.role)
+        
+        print(f"[AUTH] Login successful: {username} ({session['role']})")
+        
+        return jsonify({
+            'message': 'Login successful',
+            'user': user.to_dict()
+        }), 200
     
-    username = data['username'].strip()
-    password = data['password']
-    
-    user = User.query.filter_by(username=username).first()
-    
-    if not user or not user.check_password(password):
-        return jsonify({'error': 'Invalid username or password'}), 401
-    
-    if not user.is_active:
-        return jsonify({'error': 'User account is inactive'}), 401
-    
-    # Create session
-    session['user_id'] = user.id
-    session['username'] = user.username
-    # Handle role - it might be an Enum or a string depending on SQLAlchemy version/config
-    session['role'] = user.role.value if isinstance(user.role, RoleEnum) else str(user.role)
-    
-    return jsonify({
-        'message': 'Login successful',
-        'user': user.to_dict()
-    }), 200
+    except Exception as e:
+        print(f"[AUTH] Login error: {str(e)}")
+        return jsonify({'error': f'Login failed: {str(e)}'}), 500
 
 
 @auth_bp.route('/logout', methods=['POST'])
@@ -82,9 +100,12 @@ def get_current_user():
     return jsonify(user.to_dict()), 200
 
 
-@auth_bp.route('/check', methods=['GET'])
+@auth_bp.route('/check', methods=['GET', 'OPTIONS'])
 def check_session():
     """Check if user is logged in"""
+    if request.method == 'OPTIONS':
+        return '', 204
+    
     if 'user_id' in session:
         user = User.query.get(session['user_id'])
         if user and user.is_active:

@@ -33,7 +33,8 @@ class Config:
     JWT_ACCESS_TOKEN_EXPIRES = timedelta(hours=24)
     
     # CORS Configuration
-    CORS_ORIGINS = os.getenv('CORS_ORIGINS', 'http://localhost:3000,http://localhost:5173').split(',')
+    _cors_origins = os.getenv('CORS_ORIGINS', 'http://localhost:3000,http://localhost:3001,http://localhost:3002,http://localhost:5173')
+    CORS_ORIGINS = [origin.strip() for origin in _cors_origins.split(',')]
     
     # Application Settings
     TAX_RATE = float(os.getenv('TAX_RATE', 0.05))

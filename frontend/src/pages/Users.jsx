@@ -3,6 +3,7 @@ import { Container, Card, Table, Button, Modal, Form, Badge } from 'react-bootst
 import { usersAPI } from '../services/api';
 import { toast } from 'react-toastify';
 import { FiPlus, FiEdit, FiTrash2 } from 'react-icons/fi';
+import './Users.css';
 
 const Users = () => {
   const [users, setUsers] = useState([]);

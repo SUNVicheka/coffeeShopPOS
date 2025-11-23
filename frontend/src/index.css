@@ -1,21 +1,46 @@
+/* Modern Minimalist Yellow Color Palette */
+:root {
+  --primary-yellow: #FDB913;
+  --dark-yellow: #F4A300;
+  --light-yellow: #FFF9E6;
+  --cream: #FFFDF7;
+  --cream-bg: #FFFDF7;
+  --dark-gray: #2C3E50;
+  --light-gray: #ECF0F1;
+  --border-gray: #BDC3C7;
+  --text-dark: #2C3E50;
+  --text-light: #7F8C8D;
+  --success: #27AE60;
+  --danger: #E74C3C;
+  --warning: #F39C12;
+  --info: #3498DB;
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+html, body, #root {
+  width: 100% !important;
+  height: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  font-family: 'Segoe UI', 'Roboto', -apple-system, BlinkMacSystemFont, 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+    sans-serif !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #f5f5f5;
+  background-color: var(--cream) !important;
+  color: var(--text-dark) !important;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
 }
 
 #root {
@@ -29,16 +54,49 @@ code {
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: var(--light-gray);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #888;
+  background: var(--primary-yellow) !important;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #555;
+  background: var(--dark-yellow) !important;
+}
+
+/* Global Styles */
+a {
+  color: var(--primary-yellow) !important;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--dark-yellow) !important;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+input, textarea, select {
+  font-family: inherit;
+  border-radius: 6px;
+  border: 1px solid var(--border-gray) !important;
+  padding: 8px 12px;
+  transition: all 0.2s ease;
+}
+
+input:focus, textarea:focus, select:focus {
+  outline: none !important;
+  border-color: var(--primary-yellow) !important;
+  box-shadow: 0 0 0 3px rgba(253, 185, 19, 0.1) !important;
 }
 
 /* Receipt styles */
@@ -48,25 +106,99 @@ code {
   font-family: 'Courier New', monospace;
   max-width: 400px;
   margin: 0 auto;
+  border: 1px solid var(--border-gray);
+  border-radius: 8px;
 }
 
 .receipt-header {
   text-align: center;
-  border-bottom: 2px dashed #333;
+  border-bottom: 2px dashed var(--primary-yellow);
   padding-bottom: 10px;
   margin-bottom: 10px;
+}
+
+.receipt-header h4 {
+  color: var(--primary-yellow);
+  margin-bottom: 5px;
 }
 
 .receipt-item {
   display: flex;
   justify-content: space-between;
   padding: 5px 0;
+  font-size: 13px;
 }
 
 .receipt-total {
-  border-top: 2px dashed #333;
+  border-top: 2px dashed var(--primary-yellow);
   padding-top: 10px;
   margin-top: 10px;
   font-weight: bold;
+  color: var(--dark-yellow);
+}
+
+/* Utility Classes */
+.text-muted {
+  color: var(--text-light) !important;
+}
+
+.text-danger {
+  color: var(--danger) !important;
+}
+
+.text-success {
+  color: var(--success) !important;
+}
+
+.d-flex {
+  display: flex !important;
+}
+
+.justify-content-between {
+  justify-content: space-between !important;
+}
+
+.justify-content-center {
+  justify-content: center !important;
+}
+
+.align-items-center {
+  align-items: center !important;
+}
+
+.mb-2 {
+  margin-bottom: 0.5rem !important;
+}
+
+.mb-3 {
+  margin-bottom: 1rem !important;
+}
+
+.mt-2 {
+  margin-top: 0.5rem !important;
+}
+
+.me-2 {
+  margin-right: 0.5rem !important;
+}
+
+.ms-2 {
+  margin-left: 0.5rem !important;
+}
+
+.py-4 {
+  padding: 1.5rem 0 !important;
+}
+
+.px-3 {
+  padding: 0 1rem !important;
+}
+
+.w-100 {
+  width: 100% !important;
+}
+
+.h-100 {
+  height: 100% !important;
 }
 

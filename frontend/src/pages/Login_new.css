@@ -1,0 +1,75 @@
+/* Modern Minimalist Login Page - Yellow Theme */
+body {
+  background-color: var(--cream) !important;
+}
+
+.login-page {
+  min-height: 100vh !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background: linear-gradient(135deg, var(--light-yellow), var(--cream)) !important;
+}
+
+.card {
+  background: white !important;
+  border: 1px solid var(--border-gray) !important;
+  border-radius: 8px !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+}
+
+.card-body {
+  padding: 24px !important;
+}
+
+.form-group {
+  margin-bottom: 16px !important;
+}
+
+.form-label {
+  color: var(--text-dark) !important;
+  font-weight: 600 !important;
+}
+
+.form-control {
+  border: 1px solid var(--border-gray) !important;
+  background-color: var(--cream) !important;
+  color: var(--text-dark) !important;
+  border-radius: 6px !important;
+}
+
+.form-control:focus {
+  border-color: var(--primary-yellow) !important;
+  box-shadow: 0 0 0 3px rgba(253, 185, 19, 0.1) !important;
+  background-color: white !important;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary-yellow), var(--dark-yellow)) !important;
+  border: none !important;
+  color: white !important;
+  font-weight: 600 !important;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, var(--dark-yellow), #E89100) !important;
+  color: white !important;
+}
+
+.alert-danger {
+  background-color: #FADBD8 !important;
+  border: 1px solid #F5B7B1 !important;
+  color: #E74C3C !important;
+}
+
+.text-center {
+  text-align: center !important;
+}
+
+.text-muted {
+  color: var(--text-light) !important;
+}
+
+small {
+  font-size: 12px !important;
+}

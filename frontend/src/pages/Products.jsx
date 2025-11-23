@@ -4,6 +4,7 @@ import { productsAPI, categoriesAPI } from '../services/api';
 import { useAuth } from '../contexts/AuthContext';
 import { toast } from 'react-toastify';
 import { FiPlus, FiEdit, FiTrash2 } from 'react-icons/fi';
+import './Products.css';
 
 const Products = () => {
   const { isAdmin } = useAuth();
@@ -20,6 +21,7 @@ const Products = () => {
     cost_price: '',
     stock_qty: '',
     is_available: true,
+    image_url: '',
   });
 
   useEffect(() => {
@@ -85,6 +87,7 @@ const Products = () => {
       cost_price: product.cost_price,
       stock_qty: product.stock_qty,
       is_available: product.is_available,
+      image_url: product.image_url || '',
     });
     setShowModal(true);
   };
@@ -100,6 +103,7 @@ const Products = () => {
       cost_price: '',
       stock_qty: '',
       is_available: true,
+      image_url: '',
     });
   };
 
@@ -119,6 +123,7 @@ const Products = () => {
           <Table striped bordered hover responsive>
             <thead>
               <tr>
+                <th>Image</th>
                 <th>Name</th>
                 <th>SKU</th>
                 <th>Category</th>
@@ -131,6 +136,18 @@ const Products = () => {
             <tbody>
               {products.map((product) => (
                 <tr key={product.id}>
+                  <td style={{ textAlign: 'center' }}>
+                    {product.image_url ? (
+                      <img 
+                        src={product.image_url} 
+                        alt={product.name}
+                        style={{ width: '50px', height: '50px', objectFit: 'cover', borderRadius: '4px' }}
+                        onError={(e) => { e.target.style.display = 'none'; }}
+                      />
+                    ) : (
+                      <span style={{ color: '#999' }}>No image</span>
+                    )}
+                  </td>
                   <td>{product.name}</td>
                   <td>{product.sku || '-'}</td>
                   <td>{product.category?.name || '-'}</td>
@@ -223,6 +240,25 @@ const Products = () => {
                 value={formData.description}
                 onChange={(e) => setFormData({ ...formData, description: e.target.value })}
               />
+            </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Label>Image URL</Form.Label>
+              <Form.Control
+                type="url"
+                placeholder="https://example.com/image.jpg"
+                value={formData.image_url}
+                onChange={(e) => setFormData({ ...formData, image_url: e.target.value })}
+              />
+              {formData.image_url && (
+                <div style={{ marginTop: '10px', textAlign: 'center' }}>
+                  <img 
+                    src={formData.image_url} 
+                    alt="Preview"
+                    style={{ maxWidth: '150px', maxHeight: '150px', borderRadius: '4px' }}
+                    onError={(e) => { e.target.style.display = 'none'; }}
+                  />
+                </div>
+              )}
             </Form.Group>
             <Row>
               <Col md={4}>

@@ -13,28 +13,8 @@ export const useAuth = () => {
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
-
-  useEffect(() => {
-    // Check if user is logged in on mount
-    checkSession();
-  }, []);
-
-  const checkSession = async () => {
-    try {
-      const response = await authAPI.checkSession();
-      if (response.data.logged_in) {
-        setUser(response.data.user);
-        setLoggedIn(true);
-      }
-    } catch (error) {
-      setLoggedIn(false);
-      setUser(null);
-    } finally {
-      setLoading(false);
-    }
-  };
 
   const login = async (username, password) => {
     try {
@@ -77,7 +57,6 @@ export const AuthProvider = ({ children }) => {
     logout,
     isAdmin,
     isCashier,
-    checkSession,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

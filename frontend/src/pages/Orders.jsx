@@ -4,6 +4,7 @@ import { ordersAPI } from '../services/api';
 import { useAuth } from '../contexts/AuthContext';
 import { toast } from 'react-toastify';
 import { FiEye, FiX } from 'react-icons/fi';
+import './Orders.css';
 
 const Orders = () => {
   const { isAdmin } = useAuth();

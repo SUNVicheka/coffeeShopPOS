@@ -9,6 +9,12 @@ load_dotenv()
 
 app = create_app(os.getenv('FLASK_ENV', 'development'))
 
+# Configure session
+app.config['SESSION_COOKIE_SECURE'] = False  # Allow over HTTP for development
+app.config['SESSION_COOKIE_HTTPONLY'] = True
+app.config['SESSION_COOKIE_SAMESITE'] = 'Lax'
+app.config['PERMANENT_SESSION_LIFETIME'] = 3600  # 1 hour
+
 
 @app.shell_context_processor
 def make_shell_context():
@@ -86,7 +92,8 @@ def init_db():
             'description': 'Rich and bold espresso',
             'price': 2.50,
             'cost_price': 0.50,
-            'stock_qty': 100
+            'stock_qty': 100,
+            'image_url': 'https://images.unsplash.com/photo-1514432324607-2e467f4af445?w=400&h=300&fit=crop'
         },
         {
             'name': 'Cappuccino',
@@ -95,7 +102,8 @@ def init_db():
             'description': 'Espresso with steamed milk foam',
             'price': 3.50,
             'cost_price': 0.80,
-            'stock_qty': 100
+            'stock_qty': 100,
+            'image_url': 'https://images.unsplash.com/photo-1541183402695-c87eccf24f25?w=400&h=300&fit=crop'
         },
         {
             'name': 'Latte',
@@ -104,7 +112,8 @@ def init_db():
             'description': 'Espresso with steamed milk',
             'price': 3.75,
             'cost_price': 0.90,
-            'stock_qty': 100
+            'stock_qty': 100,
+            'image_url': 'https://images.unsplash.com/photo-1488477181946-85a2a11eba04?w=400&h=300&fit=crop'
         },
         {
             'name': 'Iced Coffee',
@@ -113,7 +122,8 @@ def init_db():
             'description': 'Cold brewed coffee',
             'price': 3.00,
             'cost_price': 0.70,
-            'stock_qty': 100
+            'stock_qty': 100,
+            'image_url': 'https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=400&h=300&fit=crop'
         },
         {
             'name': 'Green Tea',
@@ -122,7 +132,8 @@ def init_db():
             'description': 'Refreshing green tea',
             'price': 2.00,
             'cost_price': 0.30,
-            'stock_qty': 100
+            'stock_qty': 100,
+            'image_url': 'https://images.unsplash.com/photo-1597318972223-e0a85be9f2a7?w=400&h=300&fit=crop'
         },
         {
             'name': 'Croissant',
@@ -131,7 +142,8 @@ def init_db():
             'description': 'Buttery French croissant',
             'price': 2.50,
             'cost_price': 0.60,
-            'stock_qty': 50
+            'stock_qty': 50,
+            'image_url': 'https://images.unsplash.com/photo-1585518419759-67c33ef3c0df?w=400&h=300&fit=crop'
         },
         {
             'name': 'Ham Sandwich',
@@ -140,7 +152,8 @@ def init_db():
             'description': 'Ham and cheese sandwich',
             'price': 5.50,
             'cost_price': 2.00,
-            'stock_qty': 30
+            'stock_qty': 30,
+            'image_url': 'https://images.unsplash.com/photo-1553979459-d2229ba7433b?w=400&h=300&fit=crop'
         }
     ]
     
@@ -156,6 +169,7 @@ def init_db():
                 price=prod_data['price'],
                 cost_price=prod_data['cost_price'],
                 stock_qty=prod_data['stock_qty'],
+                image_url=prod_data.get('image_url'),
                 is_available=True
             )
             db.session.add(product)

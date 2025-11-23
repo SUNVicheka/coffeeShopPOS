@@ -1,0 +1,264 @@
+/* Modern Sidebar - Yellow Theme - Push Content Style */
+
+.sidebar {
+  position: fixed !important;
+  left: 0 !important;
+  top: 0 !important;
+  height: 100vh !important;
+  background: linear-gradient(180deg, var(--primary-yellow) 0%, var(--dark-yellow) 100%) !important;
+  box-shadow: 2px 0 12px rgba(0, 0, 0, 0.1) !important;
+  z-index: 1030 !important;
+  transition: all 0.3s ease !important;
+  display: flex !important;
+  flex-direction: column !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+}
+
+.sidebar.open {
+  width: 260px !important;
+  left: 0 !important;
+}
+
+.sidebar.closed {
+  width: 0 !important;
+  left: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+}
+
+/* Sidebar Header - Only Toggle Button */
+.sidebar-header {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 20px 12px !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+.sidebar-toggle {
+  background: rgba(255, 255, 255, 0.2) !important;
+  border: none !important;
+  color: white !important;
+  border-radius: 6px !important;
+  padding: 10px 12px !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-shrink: 0 !important;
+  width: 44px !important;
+  height: 44px !important;
+}
+
+.sidebar-toggle:hover {
+  background: rgba(255, 255, 255, 0.3) !important;
+  color: white !important;
+}
+
+/* Sidebar Navigation */
+.sidebar-nav {
+  flex: 1 !important;
+  padding: 16px 8px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 8px !important;
+  overflow-y: auto !important;
+}
+
+.nav-item {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  padding: 12px 12px !important;
+  color: rgba(255, 255, 255, 0.8) !important;
+  text-decoration: none !important;
+  border-radius: 8px !important;
+  transition: all 0.2s ease !important;
+  white-space: nowrap !important;
+  border: 1px solid transparent !important;
+}
+
+.nav-item:hover {
+  background: rgba(255, 255, 255, 0.15) !important;
+  color: white !important;
+  border-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+.nav-item.active {
+  background: white !important;
+  color: var(--dark-yellow) !important;
+  font-weight: 600 !important;
+  border-color: white !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
+}
+
+.nav-item svg {
+  flex-shrink: 0 !important;
+}
+
+.nav-item span {
+  font-size: 14px !important;
+  font-weight: 500 !important;
+}
+
+.sidebar.closed .nav-item span {
+  display: none !important;
+}
+
+/* Sidebar Footer */
+.sidebar-footer {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 12px !important;
+  padding: 16px 8px !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+  margin-top: auto !important;
+}
+
+.user-info {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  padding: 12px !important;
+  background: rgba(255, 255, 255, 0.1) !important;
+  border-radius: 8px !important;
+  color: white !important;
+}
+
+.user-avatar {
+  width: 40px !important;
+  height: 40px !important;
+  border-radius: 50% !important;
+  background: rgba(255, 255, 255, 0.2) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-weight: 700 !important;
+  font-size: 16px !important;
+  flex-shrink: 0 !important;
+}
+
+.user-details {
+  flex: 1 !important;
+  min-width: 0 !important;
+}
+
+.user-name {
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  margin-bottom: 2px !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+.user-role {
+  font-size: 11px !important;
+  opacity: 0.8 !important;
+  margin: 0 !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+.logout-btn {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  padding: 10px 12px !important;
+  background: rgba(255, 255, 255, 0.15) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  color: white !important;
+  border-radius: 6px !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  font-weight: 500 !important;
+  font-size: 14px !important;
+  width: 100% !important;
+  justify-content: center !important;
+}
+
+.logout-btn:hover {
+  background: #E74C3C !important;
+  border-color: #C0392B !important;
+  color: white !important;
+  transform: translateY(-2px) !important;
+}
+
+.logout-btn svg {
+  flex-shrink: 0 !important;
+}
+
+.sidebar.closed .logout-btn {
+  padding: 10px !important;
+  justify-content: center !important;
+}
+
+/* Sidebar Overlay for mobile */
+.sidebar-overlay {
+  position: fixed !important;
+  left: 0 !important;
+  top: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  background: rgba(0, 0, 0, 0.5) !important;
+  z-index: 1025 !important;
+  display: none !important;
+}
+
+/* Responsive - Mobile */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 260px !important;
+  }
+
+  .sidebar.closed {
+    transform: translateX(-100%) !important;
+  }
+
+  .sidebar.open {
+    transform: translateX(0) !important;
+  }
+
+  .sidebar-overlay {
+    display: block !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .sidebar {
+    width: 100% !important;
+  }
+
+  .sidebar.closed {
+    transform: translateX(-100%) !important;
+  }
+
+  .sidebar.open {
+    transform: translateX(0) !important;
+  }
+
+  .sidebar-overlay {
+    display: block !important;
+  }
+}
+
+/* Scrollbar styling */
+.sidebar-nav::-webkit-scrollbar {
+  width: 6px !important;
+}
+
+.sidebar-nav::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1) !important;
+}
+
+.sidebar-nav::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3) !important;
+  border-radius: 3px !important;
+}
+
+.sidebar-nav::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.5) !important;
+}

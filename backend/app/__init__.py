@@ -15,10 +15,26 @@ def create_app(config_name='development'):
     from config import config as config_dict
     app.config.from_object(config_dict[config_name])
     
+    # Session configuration - MUST be before initializing extensions
+    app.config['SESSION_COOKIE_SECURE'] = False
+    app.config['SESSION_COOKIE_HTTPONLY'] = True
+    app.config['SESSION_COOKIE_SAMESITE'] = 'Lax'
+    app.config['PERMANENT_SESSION_LIFETIME'] = 3600
+    
     # Initialize extensions
     db.init_app(app)
     jwt.init_app(app)
-    CORS(app, origins=app.config['CORS_ORIGINS'], supports_credentials=True)
+    
+    # Allow all origins for development (temporary)
+    CORS(
+        app,
+        origins="*",
+        supports_credentials=True,
+        allow_headers=['Content-Type', 'Authorization'],
+        methods=['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+        max_age=3600,
+        expose_headers=['Content-Type']
+    )
     
     # Register blueprints
     from app.routes.auth import auth_bp

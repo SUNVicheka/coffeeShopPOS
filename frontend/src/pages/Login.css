@@ -1,0 +1,238 @@
+/* Modern Minimalist Login Page - Yellow Theme */
+.login-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, var(--light-yellow) 0%, var(--cream) 100%);
+  padding: 20px;
+}
+
+.login-box {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(253, 185, 19, 0.15);
+  padding: 40px;
+  max-width: 400px;
+  width: 100%;
+  animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.login-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.login-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  background: linear-gradient(135deg, var(--primary-yellow), var(--dark-yellow));
+  border-radius: 12px;
+  color: white;
+  margin-bottom: 16px;
+  font-size: 28px;
+}
+
+.login-header h1 {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 4px;
+}
+
+.login-header p {
+  font-size: 14px;
+  color: var(--text-light);
+}
+
+.alert-error {
+  background-color: #FADBD8;
+  border: 1px solid #F5B7B1;
+  border-radius: 6px;
+  padding: 12px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  animation: shake 0.3s ease;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
+
+.alert-error p {
+  color: #C0392B;
+  font-size: 14px;
+  font-weight: 500;
+  margin: 0;
+}
+
+.alert-error button {
+  background: none;
+  border: none;
+  color: #C0392B;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 0;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+.form-input {
+  padding: 12px;
+  border: 1px solid var(--border-gray);
+  border-radius: 6px;
+  font-size: 14px;
+  background-color: var(--cream);
+  transition: all 0.2s ease;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--primary-yellow);
+  background-color: white;
+  box-shadow: 0 0 0 3px rgba(253, 185, 19, 0.1);
+}
+
+.form-input::placeholder {
+  color: var(--text-light);
+}
+
+.login-button {
+  background: linear-gradient(135deg, var(--primary-yellow), var(--dark-yellow));
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 12px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.login-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(253, 185, 19, 0.3);
+}
+
+.login-button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.login-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.login-footer {
+  border-top: 1px solid var(--border-gray);
+  padding-top: 24px;
+}
+
+.login-footer p {
+  text-align: center;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-light);
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.credentials {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.credential {
+  background-color: var(--light-yellow);
+  padding: 12px;
+  border-radius: 6px;
+  text-align: center;
+}
+
+.credential strong {
+  display: block;
+  font-size: 13px;
+  color: var(--primary-yellow);
+  margin-bottom: 4px;
+}
+
+.credential small {
+  display: block;
+  font-size: 11px;
+  color: var(--text-light);
+  font-family: 'Monaco', monospace;
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+  .login-box {
+    padding: 24px;
+  }
+
+  .login-header h1 {
+    font-size: 24px;
+  }
+
+  .credentials {
+    grid-template-columns: 1fr;
+  }
+}

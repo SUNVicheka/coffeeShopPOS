@@ -3,6 +3,7 @@ import { Container, Row, Col, Card, Table, Form, Button } from 'react-bootstrap'
 import { reportsAPI } from '../services/api';
 import { toast } from 'react-toastify';
 import { useAuth } from '../contexts/AuthContext';
+import './Reports.css';
 
 const Reports = () => {
   const { isAdmin } = useAuth();
